@@ -18,9 +18,10 @@ public class Settings {
 		this.maxPlayers = s.maxPlayers;
 		this.time = s.time;
 		this.maxErrors = s.maxErrors;
-		this.maxPlayers = s.maxPlayers;
 		this.smallBind = s.smallBind;
 		this.playerChip = s.playerChip;
+		this.maxRounds = s.maxRounds;
+		this.rounds4IncrementBlind = s.rounds4IncrementBlind;
 	}
 
 	public int getMaxPlayers() {
@@ -59,6 +60,10 @@ public class Settings {
 		return smallBind;
 	}
 
+	public long getBigBind() {
+		return smallBind * 2;
+	}
+	
 	public void setSmallBind(long smallBind) {
 		this.smallBind = smallBind;
 	}
@@ -77,6 +82,13 @@ public class Settings {
 
 	public void setRounds4IncrementBlind(int rounds4IncrementBlind) {
 		this.rounds4IncrementBlind = rounds4IncrementBlind;
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+	  return "{class:'Settings', maxPlayers:" + maxPlayers + ", time:" + time + ", maxErrors:" + maxErrors + ", playerChip:" + playerChip + ", maxRounds:" + maxRounds + ", smallBind:" + smallBind + ", rounds4IncrementBlind:" + rounds4IncrementBlind + '}';
+
 	}
 	
 	

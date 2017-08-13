@@ -38,6 +38,11 @@ public class GameInfo  <P extends PlayerInfo>{
 	public void setGameState(TexasHoldEmUtil.GameState gameState) {
 		this.gameState = gameState;
 	}
+	
+	public P getPlayer(int index) {
+        return players.get(index);
+    }
+	
 	public List<P> getPlayers() {
 		return players;
 	}
@@ -50,6 +55,11 @@ public class GameInfo  <P extends PlayerInfo>{
 	public void setSettings(Settings settings) {
 		this.settings = settings;
 	}
+	
+    public int getNumPlayers() {
+        return players.size();
+    }
+    
 	public List<Card> getCommunityCards() {
 		return new ArrayList<>(communityCards);
 	}

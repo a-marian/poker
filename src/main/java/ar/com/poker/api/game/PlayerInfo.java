@@ -15,6 +15,11 @@ public class PlayerInfo {
 	public PlayerInfo(){
 		
 	}
+	
+	   public boolean isActive() {
+	        return state.isActive();
+	    }
+
 
 	public String getName() {
 		return name;

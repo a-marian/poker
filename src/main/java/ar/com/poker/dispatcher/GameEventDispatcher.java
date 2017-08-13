@@ -5,53 +5,45 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 
 import org.slf4j.LoggerFactory;
+
+import net.jcip.annotations.ThreadSafe;
+
 import org.slf4j.Logger;
 
-
-public class GameEventDispatcher<T> implements IGameEventDispatcher {
+@ThreadSafe
+public class GameEventDispatcher<E extends Enum, T> implements IGameEventDispatcher {
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(....class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(GameEventDispatcher.class);
 
 	public static final String EXIT_EVENT_TYPE = "exit";
-	private final Map<String, IGameEventProcessor<T>> procesors;
+	private final Map<E, IGameEventProcessor<T>> processors;
 	private final T target;
-	private List<GameEvent> events = new ArrayList<GameEvent>();
+	private final E exitEven;
+	private List<GameEvent> events = new ArrayList<>();
 	private volatile boolean exit = false;
 	private ExecutorService executors;
 	
-	public GameEventDispatcher(T target, Map<String, IGameEventProcessor<T>> p, ExecutorService executors){
-		this.target = target;
-        this.processors = p;
+	public GameEventDispatcher(T target, Map<E, IGameEventProcessor<T>> processors, ExecutorService executors, E exitEven) {
+        this.target = target;
+        this.processors = processors;
         this.executors = executors;
-	}
+        this.exitEven = exitEven;
+    }
 	
 	public synchronized void dispatch(GameEvent event){
 		events.add(event);
 		this.notify();
 	}
+
 	
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		while (!exit){
-			try{
-				doTask();
-			}catch (InterruptedException ex) {
-				// TODO: handle exception
-				LOGGER.error("GameEventDispatcher<" + ..., target, ex);
-			}
+	private void process (GameEvent event){
+		IGameEventProcessor processor = processors.get(event.getType());
+		if(processor != null){
+			executors.execute(() -> processor.process(target, event));
 		}
-		executors.shutdown();
-		
 	}
-	@Override
-	public void dispatcher(GameEvent event) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public synchronized exit() {
-		// TODO Auto-generated method stub
+	
+	public synchronized void exit() {
 		exit = true;
 		this.notify();
 	}
@@ -67,14 +59,35 @@ public class GameEventDispatcher<T> implements IGameEventDispatcher {
 		}
 		for(int i = 0; i < lastEvents.size() && !exit; i++){
 			GameEvent event = lastEvents.get(i);
-			if(EXIT_EVENT_TYPE.equals(event.getType())){
+			if(exitEven.equals(event.getType())){
 				exit = true;
 			} else {
 				process(event);
 			}
 		}
-		
+	}
+
+	
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		while (!exit){
+			try{
+				doTask();
+			}catch (InterruptedException ex) {
+				// TODO: handle exception
+				LOGGER.error("GameEventDispatcher<" +  target.getClass() + ">.run(): " + target, ex);
+			}
+		}
+		executors.shutdown();
 		
 	}
+
+	@Override
+	public void dispatcher(GameEvent event) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	
 }
