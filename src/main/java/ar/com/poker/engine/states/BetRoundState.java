@@ -58,8 +58,9 @@ private static Map<BetCommandType, BetChecker> buildBetCommandChecker() {
 
 
 public boolean execute(ModelContext model) {
-boolean result = false;
-int playerTurn = model.getPlayerTurn(); PlayerEntity player = model.getPlayer(playerTurn); BetCommand command = player.getBetCommand();
+	boolean result = false;
+	int playerTurn = model.getPlayerTurn(); PlayerEntity player = model.getPlayer(playerTurn);
+	BetCommand command = player.getBetCommand();
         if (command != null) {
             BetCommand resultCommand = command;
             player.setBetCommand(null);

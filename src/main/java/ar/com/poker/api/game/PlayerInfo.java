@@ -49,6 +49,9 @@ public class PlayerInfo {
 		this.bet = bet;
 	}
 
+	public Card getCard(int index){
+		return cards[index];
+	}
 	
 	public Card[] getCards() {
 		return new Card[]{cards[0], cards[1]};

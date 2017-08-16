@@ -44,6 +44,13 @@ public class PlayerEntity extends PlayerInfo {
 		this.lastRoundChips = lastRoundChips;
 	}
 	
+	 public boolean showCards() {
+	        return showCards;
+	    }
+
+	    public void showCards(boolean showCards) {
+	        this.showCards = showCards;
+	    }
 	
 	
 	
