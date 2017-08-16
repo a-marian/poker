@@ -11,19 +11,19 @@ import net.jcip.annotations.ThreadSafe;
 import org.slf4j.Logger;
 
 @ThreadSafe
-public class GameEventDispatcher<E extends Enum, T> implements IGameEventDispatcher {
+public class GameEventDispatcher<E extends Enum, T> implements IGameEventDispatcher<E> {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(GameEventDispatcher.class);
 
 	public static final String EXIT_EVENT_TYPE = "exit";
-	private final Map<E, IGameEventProcessor<T>> processors;
+	private final Map<E, IGameEventProcessor<E,T>> processors;
 	private final T target;
 	private final E exitEven;
 	private List<GameEvent> events = new ArrayList<>();
 	private volatile boolean exit = false;
 	private ExecutorService executors;
 	
-	public GameEventDispatcher(T target, Map<E, IGameEventProcessor<T>> processors, ExecutorService executors, E exitEven) {
+	public GameEventDispatcher(T target, Map<E, IGameEventProcessor<E,T>> processors, ExecutorService executors, E exitEven) {
         this.target = target;
         this.processors = processors;
         this.executors = executors;

@@ -1,9 +1,9 @@
 package ar.com.util.statemachine;
 
+@FunctionalInterface
 public interface IState<T> {
 
-		public String getName();
-		
+	
 		public boolean execute(T context);
 		
 }
