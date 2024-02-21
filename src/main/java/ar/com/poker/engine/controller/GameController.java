@@ -5,7 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
+import ar.com.util.timer.GameTimer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -57,5 +59,25 @@ return result;
 @Override
 public void setSettings(Settings settings) {
         this.settings = settings;
+    }
+
+    @Override
+    public boolean addStrategy(IStrategy strategy) {
+        return false;
+    }
+
+    @Override
+    public void start() {
+
+    }
+
+    @Override
+    public void waitFinish() {
+
+    }
+
+    @Override
+    public void run() {
+
     }
 }

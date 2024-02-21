@@ -9,18 +9,11 @@ import ar.com.poker.api.game.TexasHoldEmUtil;
 import ar.com.poker.dispatcher.GameEvent;
 import ar.com.poker.dispatcher.IGameEventDispatcher;
 import ar.com.poker.engine.model.ModelContext;
-import ar.com.poker.engine.model.ModelUtil;
-import ar.com.poker.engine.states.BetRoundState;
-import ar.com.poker.engine.states.CheckState;
-import ar.com.poker.engine.states.EndGameState;
 import ar.com.poker.engine.states.EndHandState;
-import ar.com.poker.engine.states.InitHandState;
-import ar.com.poker.engine.states.PokerStates;
 import ar.com.poker.engine.states.ShowDownTrigger;
 import ar.com.poker.engine.states.WinnerTrigger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import ar.com.util.statemachine.StateDecoratorBuilder;
 import ar.com.util.statemachine.StateMachine;
 import ar.com.util.statemachine.StateMachineInstance;
 import ar.com.util.timer.IGameTimer;
@@ -39,7 +32,7 @@ public class StateMachineConnector {
     private final IGameTimer timer;
     private ModelContext model;
     private IGameEventDispatcher system;
-    private StateMachineInstance<ModelContext> instance;
+    private StateMachineInstance<ModelContext, T1> instance;
     private long timeoutId = 0;
 
     public StateMachineConnector(IGameTimer t,Map<String,IGameEventDispatcher> pd){ 

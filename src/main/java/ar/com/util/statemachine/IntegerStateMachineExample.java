@@ -11,7 +11,7 @@ public class IntegerStateMachineExample {
 		sm.addTransition(state1, state3, (n) -> (n % 3) == 0); 
 		sm.setDefaultTransition(state1, state4);
 		
-		StateMachineInstance<Integer> smi = sm.startInstance(6);
+		StateMachineInstance<Integer, T1> smi = sm.startInstance(6);
 		
 	}
 	

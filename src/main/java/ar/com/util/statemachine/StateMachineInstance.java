@@ -2,9 +2,8 @@ package ar.com.util.statemachine;
 
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-public class StateMachineInstance<T> {
+public class StateMachineInstance<T, T1> {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(StateMachineInstance.class);
 	
@@ -27,7 +26,7 @@ public class StateMachineInstance<T> {
 		 return finish;
 	 }
 	 
-	 public StateMachineInstance<T>execute(){
+	 public StateMachineInstance<T, T1>execute(){
 		 this.pause = false;
 		 while(state != null && !pause){
 			 state = executeState();

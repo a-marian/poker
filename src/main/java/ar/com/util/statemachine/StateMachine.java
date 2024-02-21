@@ -40,7 +40,7 @@ public class StateMachine<S extends Enum, T> {
 	
 	public void addTransition(Transition<T> transition){
 		IState<T> origin = transition.getOrigin();
-		List<Transition<T>> listTransitions = transitions.get(origin.getName());
+		List<Transition<Object>> listTransitions = transitions.get(origin.getName());
 		if (listTransitions == null){
 			listTransitions = new ArrayList<>();
 			transitions.put(origin.getName(), listTransitions);
@@ -52,7 +52,7 @@ public class StateMachine<S extends Enum, T> {
 		addTransition(new Transition<>(origin, target, checker));
 	}
 	public StateMachineInstance<S,T> startInstance(T data) {
-	return new StateMachineInstance(data, this, initState).execute();
+	return new StateMachineInstance((Object) data, (StateMachine) this, initState).execute();
 	}
 	
 
