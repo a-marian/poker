@@ -6,13 +6,19 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class StateMachine<T> {
-	private IState<T> initState = null;
+import net.jcip.annotations.NotThreadSafe;
+
+@NotThreadSafe
+public class StateMachine<S extends Enum, T> {
+	
+	private static final IState DEFAULT_TRIGGER = context -> true;
+	
+	private final S initState;
+	
 	private final Map<String, IState<T>> defaultTransition = new HashMap<>();
 	private final Map<String, List<Transition<T>>> transitions = new HashMap<>();
 	
-	public StateMachine(){	
-	}
+
 	
 	List<Transition<T>> getTransitionsByOrigin(IState<T> state){
 		List<Transition<T>> result = transitions.get(state.getName());
@@ -22,9 +28,7 @@ public class StateMachine<T> {
 		return result;
 	}
 	
-	public void setInitState(IState<T>initState){
-		this.initState = initState;
-	}
+	
 	
 	public IState<T> getDefaultTransition(IState<T> origin) {
 		return defaultTransition.get(origin.getName());
@@ -47,7 +51,7 @@ public class StateMachine<T> {
 	public void addTransition(IState<T> origin, IState<T> target, IChecker<T> checker) { 
 		addTransition(new Transition<>(origin, target, checker));
 	}
-	public StateMachineInstance<T> startInstance(T data) {
+	public StateMachineInstance<S,T> startInstance(T data) {
 	return new StateMachineInstance(data, this, initState).execute();
 	}
 	

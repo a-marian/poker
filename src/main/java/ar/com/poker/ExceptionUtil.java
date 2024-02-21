@@ -5,8 +5,8 @@ import java.text.MessageFormat;
 
 public class ExceptionUtil {
 	
-	public static final String NULL_ERR_MSG = "El argumento {0} no  ede ser nulo.";
-	public static final String LENGTH_ERR_MSG = "El argumento {0} no puede ser nulo y debe tener una longitud de {1}.";
+	public static final String NULL_ERR_MSG = "Argument {0} can't be null.";
+	public static final String LENGTH_ERR_MSG = ",argument {0} can't be null and {1}.";
 	public static final String SIZE_ERR_MSG = "El argumento {0} no puede ser nulo y debe tener {1} elementos.";
 	public static final String MIN_VALUE_ERR_MSG = "El argumento {0} no puede tener un valor inferior a <{1}> y tiene <{2}>.";
 

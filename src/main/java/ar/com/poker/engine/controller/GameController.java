@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import ar.com.poker.api.game.IGameController;
 import ar.com.poker.api.game.IStrategy;
@@ -19,7 +20,7 @@ import ar.com.util.timer.IGameTimer;
 public class GameController implements IGameController, Runnable{
 
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(GameContr...class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(GameController.class);
     private static final int DISPATCHER_THREADS = 1;
     private static final int EXTRA_THREADS = 2;
     public static final String SYSTEM_CONTROLLER = "system";

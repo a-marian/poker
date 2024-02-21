@@ -8,16 +8,16 @@ package ar.com.poker.api.core;
 public final class Card {
 	
 	private static final String STRING_RANK_CARDS = "23456789TJQKA";
-	public static enum Suit {
+	public enum Suit {
 		SPADE('♠'), HEART('♥'), DIAMOND('♦'), CLUB('♣');
-		private Suit(char c) {
+		Suit(char c) {
 			this.c = c;
 		}
 		private final char c;
 	}
 	
-	public  static enum Rank {
-		TWO, TRHEE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE
+	public enum Rank {
+		TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING, ACE
 	}
 	
 	
@@ -26,10 +26,10 @@ public final class Card {
 	
 	public Card (Suit suit, Rank rank) {
 		if (suit == null) {
-			throw new IllegalArgumentException("suit no puede tener un valor nulo");
+			throw new IllegalArgumentException("Suit can't be null");
 		}
 		if (rank == null){
-			throw new IllegalArgumentException("rank no puede tener valor nulo");
+			throw new IllegalArgumentException("Rank can't be null");
 		}
 		
 		this.suit = suit;
@@ -44,14 +44,12 @@ public final class Card {
 		return rank;
 	}
 	
-	//overriding method for descriptive result
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stu
 		int rankValue = rank.ordinal();
 		return STRING_RANK_CARDS.substring(rankValue, rankValue +1) + suit.c;
-	  //	return STRING_RANK_CARDS.substring(rankValue, rankValue +1).concat(suit.name().substring(0, 1));
-		//return "Card{"+"suit="+ suit +", rank="+ rank+"}";
+
 	}
 	
 	@Override

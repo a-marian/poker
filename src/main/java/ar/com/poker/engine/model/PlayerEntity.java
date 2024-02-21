@@ -9,7 +9,7 @@ public class PlayerEntity extends PlayerInfo {
 	private int handValue = 0;
 	private BetCommand betCommand;
 	private boolean showCards;
-	private int roudsSurvival;
+	private int roundsSurvival;
 	private long lastRoundChips;
 	    
 	
@@ -31,11 +31,11 @@ public class PlayerEntity extends PlayerInfo {
 	public void setShowCards(boolean showCards) {
 		this.showCards = showCards;
 	}
-	public int getRoudsSurvival() {
-		return roudsSurvival;
+	public int getRoundsSurvival() {
+		return roundsSurvival;
 	}
-	public void setRoudsSurvival(int roudsSurvival) {
-		this.roudsSurvival = roudsSurvival;
+	public void setRoundsSurvival(int roundsSurvival) {
+		this.roundsSurvival = roundsSurvival;
 	}
 	public long getLastRoundChips() {
 		return lastRoundChips;

@@ -7,10 +7,10 @@ import ar.com.poker.engine.model.ModelContext;
 import ar.com.poker.engine.model.PlayerEntity;
 import ar.com.util.statemachine.IState;
 
-public class EndState implements IState<ModelContext> {
+public class EndGameState implements IState<ModelContext> {
 	public static final String NAME = "EndHand";
 	
-	@Override
+
 	public String getName() {
 		// TODO Auto-generated method stub
 		return NAME;

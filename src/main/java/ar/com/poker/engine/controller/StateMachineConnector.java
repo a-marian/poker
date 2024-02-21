@@ -98,7 +98,7 @@ public class StateMachineConnector {
             }
     }
     
-    private void execute() {
+    private void execute()
     if (instance.execute().isFinish()) {
             model.setGameState(TexasHoldEmUtil.GameState.END);
             model.setCommunityCards(Collections.emptyList());
