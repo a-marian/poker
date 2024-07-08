@@ -32,7 +32,7 @@ public class StateMachineConnector {
     private final IGameTimer timer;
     private ModelContext model;
     private IGameEventDispatcher system;
-    private StateMachineInstance<ModelContext, T1> instance;
+    private StateMachineInstance<ModelContext> instance;
     private long timeoutId = 0;
 
     public StateMachineConnector(IGameTimer t,Map<String,IGameEventDispatcher> pd){ 

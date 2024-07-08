@@ -21,8 +21,6 @@ public final class Hands {
 		
 	}
 	
-	private Hands(){
-		
-	}
+	private Hands(){}
 	
 }

@@ -3,7 +3,7 @@ package ar.com.util.statemachine;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 
-public class StateMachineInstance<T, T1> {
+public class StateMachineInstance<T> {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(StateMachineInstance.class);
 	
@@ -12,9 +12,7 @@ public class StateMachineInstance<T, T1> {
 	 private IState<T> state;
 	 private boolean finish;
 	 private boolean pause;
-	
-	 
-	 public StateMachineInstance(T context, StateMachine<T> parent, IState<T> state){
+	public StateMachineInstance(T context, StateMachine<T> parent, IState<T> state){
 		 this.context = context;
 		 this.parent = parent;
 		 this.state = state;
@@ -26,7 +24,7 @@ public class StateMachineInstance<T, T1> {
 		 return finish;
 	 }
 	 
-	 public StateMachineInstance<T, T1>execute(){
+	 public StateMachineInstance<T>execute(){
 		 this.pause = false;
 		 while(state != null && !pause){
 			 state = executeState();

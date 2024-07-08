@@ -10,10 +10,6 @@ public class AfterStateDecorator<T> implements IState<T> {
 		this.listener = listener;
 	}
 	
-	@Override
-	public String getName() {
-    	return state.getName();
-	}
 
 	@Override
 	public boolean execute(T context) {

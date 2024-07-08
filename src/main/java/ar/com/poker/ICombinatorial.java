@@ -1,6 +1,6 @@
 package ar.com.poker;
 
-public interface ICombinatoial {
+public interface ICombinatorial {
 	
 	public long combinations();
 	

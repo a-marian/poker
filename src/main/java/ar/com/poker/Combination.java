@@ -1,12 +1,12 @@
 package ar.com.poker;
 
-public class Combination implements ICombinatoial {
+public class Combination implements ICombinatorial {
 	
 	private final int items;
 	private final int[] indexes;
 	
 	public Combination(int subItems, int items){
-		ExceptionUtil.checkMinValueArgument(subItems, 1, "subitems");
+		ExceptionUtil.checkMinValueArgument(subItems, 1, "subItems");
 		ExceptionUtil.checkMinValueArgument(items, subItems, "items");
 		
 		this.indexes = new int[subItems];

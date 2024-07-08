@@ -37,7 +37,7 @@ public class HandEvaluator implements IHandsEvaluator{
 		Set<Card> previousCards = new HashSet<Card>(Hands.CARDS);
 		for(Card card: cards){
 			ExceptionUtil.checkNullArgument(card, "card["+ (index++) +"]");
-			ExceptionUtil.checkArgument(previousCards.contains(card), "La carta{} esta repetida", card);
+			ExceptionUtil.checkArgument(previousCards.contains(card), "La carta{} es repetida", card);
 			previousCards.add(card);
 			ranks[card.getRank().ordinal()]++;
 			suits[card.getSuit().ordinal()]++;

@@ -9,17 +9,16 @@ import java.util.Map;
 import net.jcip.annotations.NotThreadSafe;
 
 @NotThreadSafe
-public class StateMachine<S extends Enum, T> {
-	
-	private static final IState DEFAULT_TRIGGER = context -> true;
-	
-	private final S initState;
-	
-	private final Map<String, IState<T>> defaultTransition = new HashMap<>();
-	private final Map<String, List<Transition<T>>> transitions = new HashMap<>();
-	
+public class StateMachine<T> {
 
-	
+	private IState<T> initState= null;
+	private final Map<String, IState<T>> defaultTransition= new HashMap<>();
+	private final Map<String, List<Transition<T>>> transitions = new HashMap<>();
+
+	public void setInitState(IState<T> initState){
+		this.initState = initState;
+	}
+
 	List<Transition<T>> getTransitionsByOrigin(IState<T> state){
 		List<Transition<T>> result = transitions.get(state.getName());
 		if (result == null){
@@ -51,9 +50,7 @@ public class StateMachine<S extends Enum, T> {
 	public void addTransition(IState<T> origin, IState<T> target, IChecker<T> checker) { 
 		addTransition(new Transition<>(origin, target, checker));
 	}
-	public StateMachineInstance<S,T> startInstance(T data) {
+	public StateMachineInstance<T> startInstance(T data) {
 	return new StateMachineInstance((Object) data, (StateMachine) this, initState).execute();
 	}
-	
-
 }

@@ -1,7 +1,9 @@
 package ar.com.poker.api.game;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import ar.com.poker.api.core.Card;
 
@@ -67,6 +69,8 @@ public class GameInfo  <P extends PlayerInfo>{
 	public void setCommunityCards(List<Card> communityCards){
 		this.communityCards.clear();
 		this.communityCards.addAll(communityCards);
+		Random r = new Random();
+		BigInteger.probablePrime(2,r);
 	}
 	
 	

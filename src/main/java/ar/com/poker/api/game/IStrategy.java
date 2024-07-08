@@ -6,13 +6,13 @@ import ar.com.poker.api.core.Card;
 
 public interface IStrategy {
 
-	public String getName();
+	String getName();
 	
-	public BetCommand getCommand(GameInfo<PlayerInfo> state);
+	BetCommand getCommand(GameInfo<PlayerInfo> state);
 	
-	public default void updateState(GameInfo<PlayerInfo> state){}
+	default void updateState(GameInfo<PlayerInfo> state){}
 	
-	public default void check(List<Card> comunityCards){}
+	default void check(List<Card> comunityCards){}
 	
-	public default void onPlayerCommand(String player, BetCommand betCommand){}
+	default void onPlayerCommand(String player, BetCommand betCommand){}
 }
