@@ -1,6 +1,7 @@
 package ar.com.poker.api.core;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import net.jcip.annotations.NotThreadSafe;
@@ -27,7 +28,7 @@ public class Deck {
 	
 	public void shuffle(){
 		index = 0;
-		
+		Collections.shuffle(cards);
 	}
 	
 	public static List<Card> getAllCards(){
@@ -40,4 +41,10 @@ public class Deck {
 			}
 		return result;
 		}
+
+	@Override
+	public String toString() {
+		return String.join("{class:'Deck', index:",
+				Integer.toString(index), ", cards: ", cards.toString(), "'");
+	}
 }

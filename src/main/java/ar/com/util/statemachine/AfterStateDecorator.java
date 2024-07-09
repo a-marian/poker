@@ -1,16 +1,14 @@
 package ar.com.util.statemachine;
 
-public class AfterStateDecorator<T> implements IState<T> { 
+public class AfterStateDecorator<T> implements IStateTrigger<T> {
 	
-	private final IState<T> state;
+	private final IStateTrigger<T> state;
 	private final Runnable listener;
 	
-	public AfterStateDecorator(IState<T> state, Runnable listener) { 
+	public AfterStateDecorator(IStateTrigger<T> state, Runnable listener) {
 		this.state = state;
 		this.listener = listener;
 	}
-	
-
 	@Override
 	public boolean execute(T context) {
     	boolean result = state.execute(context);

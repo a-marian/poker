@@ -1,20 +1,14 @@
 package ar.com.util.statemachine;
 
-public class BeforeStateDecorator<T> implements IState<T> {
+public class BeforeStateDecorator<T> implements IStateTrigger<T> {
 	
-	private final IState<T> state;
+	private final IStateTrigger<T> state;
 	private final Runnable listener;
 	private boolean executed = true;
 	
-	public BeforeStateDecorator(IState<T> state, Runnable listener){
+	public BeforeStateDecorator(IStateTrigger<T> state, Runnable listener){
 		this.state = state;
 		this.listener = listener;
-	}
-
-	@Override
-	public String getName() {
-		// TODO Auto-generated method stub
-		return state.getName();
 	}
 
 	@Override

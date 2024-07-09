@@ -2,6 +2,7 @@ package ar.com.poker;
 
 import static org.junit.Assert.*;
 
+import ar.com.util.combinatorial.Combination;
 import org.junit.Test;
 
 public class CombinationConstructorTest {

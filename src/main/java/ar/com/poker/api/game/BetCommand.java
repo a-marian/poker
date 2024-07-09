@@ -1,6 +1,5 @@
 package ar.com.poker.api.game;
 
-import ar.com.poker.ExceptionUtil;
 import ar.com.poker.api.game.TexasHoldEmUtil.BetCommandType;
 import net.jcip.annotations.NotThreadSafe;
 

@@ -2,7 +2,7 @@ package ar.com.poker.api.game;
 
 import java.util.List;
 
-import ar.com.poker.Combination;
+import ar.com.util.combinatorial.Combination;
 import ar.com.poker.api.core.Card;
 import ar.com.poker.api.core.IHandsEvaluator;
 import static ar.com.poker.api.game.TexasHoldEmUtil.COMMUNITY_CARDS;

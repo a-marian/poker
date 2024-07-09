@@ -1,4 +1,7 @@
-package ar.com.poker;
+package ar.com.util.combinatorial;
+
+import ar.com.util.exceptions.ExceptionUtil;
+
 
 public class Combination implements ICombinatorial {
 	

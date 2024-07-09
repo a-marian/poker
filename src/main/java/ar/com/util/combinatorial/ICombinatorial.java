@@ -1,4 +1,4 @@
-package ar.com.poker;
+package ar.com.util.combinatorial;
 
 public interface ICombinatorial {
 	

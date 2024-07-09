@@ -36,7 +36,7 @@ public class GameController implements IGameController, Runnable{
     public static final String ADD_PLAYER_CONNECTOR_EVENT_TYPE = "addPlayer";
     public static final String TIMEOUT_CONNECTOR_EVENT_TYPE = "timeOutCommand";
     public static final String CREATE_GAME_CONNECTOR_EVENT_TYPE = "createGame";
-    private final Map<String, IGameEventDispatcher> players = new HashMap<>();
+    private final Map<String, IGameEventDispatcher<PokerEventType>> players = new HashMap<>();
     private final List<String> playersByName = new ArrayList<>();
     private final Map<String, IGameEventProcessor<IStrategy>> playerProcessors;
     private final GameEventDispatcher<StateMachineConnector> connectorDispatcher;

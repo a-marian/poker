@@ -9,48 +9,39 @@ import java.util.Map;
 import net.jcip.annotations.NotThreadSafe;
 
 @NotThreadSafe
-public class StateMachine<T> {
+public class StateMachine<S extends Enum, T> {
 
-	private IState<T> initState= null;
-	private final Map<String, IState<T>> defaultTransition= new HashMap<>();
-	private final Map<String, List<Transition<T>>> transitions = new HashMap<>();
+	private static final IStateTrigger DEFAULT_TRIGGER = context -> true;
+	private final S initState;
+	private final Map<S, IStateTrigger<T>> triggersByState;
+	private final Map<S, List<Transition<S,T>>> transitions;
 
-	public void setInitState(IState<T> initState){
+	public StateMachine(S initState, Map<S, IStateTrigger<T>> triggersByState,
+						Map<S, List<Transition<S, T>>> transitions) {
 		this.initState = initState;
-	}
+		this.triggersByState = new HashMap<>(triggersByState);
+		this.transitions = new HashMap<>(transitions.size());
+		//transitions.entrySet().stream().forEach(e -> this.transitions.put(e.getKey(), new ArrayList<>(e.getValue())));
+		transitions.forEach((key, value) -> this.transitions.put(key, new ArrayList<>(value)));
 
-	List<Transition<T>> getTransitionsByOrigin(IState<T> state){
-		List<Transition<T>> result = transitions.get(state.getName());
+	}
+	List<Transition<S,T>> getTransitionsByOrigin(S state){
+		List<Transition<S, T>> result = transitions.get(state);
 		if (result == null){
 			result = Collections.emptyList();
 		}
 		return result;
 	}
-	
-	
-	
-	public IState<T> getDefaultTransition(IState<T> origin) {
-		return defaultTransition.get(origin.getName());
-	}
-	
-	public void setDefaultTransition(IState<T> origin, IState<T> target){
-		this.defaultTransition.put(origin.getName(), target);
-	}
-	
-	public void addTransition(Transition<T> transition){
-		IState<T> origin = transition.getOrigin();
-		List<Transition<Object>> listTransitions = transitions.get(origin.getName());
-		if (listTransitions == null){
-			listTransitions = new ArrayList<>();
-			transitions.put(origin.getName(), listTransitions);
+
+	public IStateTrigger<T> getTrigger(S state){
+		IStateTrigger<T> result = triggersByState.get(state);
+		if(result == null){
+			result = (IStateTrigger<T>) DEFAULT_TRIGGER;
 		}
-		listTransitions.add(transition);
+		return result;
 	}
-	
-	public void addTransition(IState<T> origin, IState<T> target, IChecker<T> checker) { 
-		addTransition(new Transition<>(origin, target, checker));
-	}
-	public StateMachineInstance<T> startInstance(T data) {
+
+	public StateMachineInstance<S, T> startInstance(T data) {
 	return new StateMachineInstance((Object) data, (StateMachine) this, initState).execute();
 	}
 }

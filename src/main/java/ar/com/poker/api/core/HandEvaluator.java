@@ -4,8 +4,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import ar.com.poker.ExceptionUtil;
 import ar.com.poker.api.core.Hands.Type;
+import ar.com.util.exceptions.ExceptionUtil;
 
 public class HandEvaluator implements IHandsEvaluator{
 
