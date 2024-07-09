@@ -5,9 +5,12 @@ import java.util.List;
 import ar.com.util.combinatorial.Combination;
 import ar.com.poker.api.core.Card;
 import ar.com.poker.api.core.IHandsEvaluator;
+import net.jcip.annotations.NotThreadSafe;
+
 import static ar.com.poker.api.game.TexasHoldEmUtil.COMMUNITY_CARDS;
 import static ar.com.poker.api.game.TexasHoldEmUtil.PLAYER_CARDS;
 
+@NotThreadSafe
 public class Hands7Evaluator {
 	
 	public static final int TOTAL_CARDS = PLAYER_CARDS + COMMUNITY_CARDS;

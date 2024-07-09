@@ -2,13 +2,15 @@ package ar.com.poker.api.game;
 
 import ar.com.poker.api.core.Card;
 import ar.com.poker.api.game.TexasHoldEmUtil.PlayerState;
+import net.jcip.annotations.NotThreadSafe;
 
+@NotThreadSafe
 public class PlayerInfo {
 
 	private String name;
 	private long chips;
 	private long bet;
-	private Card[] cards = new Card[TexasHoldEmUtil.PLAYER_CARDS];
+	private final Card[] cards = new Card[TexasHoldEmUtil.PLAYER_CARDS];
 	private PlayerState state;
 	private int errors;
 	
@@ -87,8 +89,4 @@ public class PlayerInfo {
 	public String toString(){
         return "{class:'PlayerInfo', name:'" + name + "', chips:" + chips + ", bet:" + bet + ", cards:[" + cards[0] + ", " + cards[1] + "], state:'" + state + "', errors:" + errors + '}';
     }
-	
-	
-	
-	
 }

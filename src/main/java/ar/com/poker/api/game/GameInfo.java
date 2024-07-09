@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Random;
 
 import ar.com.poker.api.core.Card;
+import net.jcip.annotations.NotThreadSafe;
 
+@NotThreadSafe
 public class GameInfo  <P extends PlayerInfo>{
 	
 	private int round;
