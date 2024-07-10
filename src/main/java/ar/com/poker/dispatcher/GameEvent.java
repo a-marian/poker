@@ -11,16 +11,13 @@ public class GameEvent<E extends Enum> {
 	private  E type;
 	private String source;
 	private Object payload;
+
 	
-	private GameEvent(){
-		
-	}
-	
-	private GameEvent(E type, String source){
+	public GameEvent(E type, String source){
 		this(type, source, null);
 	}
 	
-	private GameEvent(E type, String source, Object payload){
+	public GameEvent(E type, String source, Object payload){
 			this.source = source;
 			this.type = type;
 			this.payload = payload;

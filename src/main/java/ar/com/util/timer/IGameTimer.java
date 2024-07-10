@@ -7,9 +7,9 @@ public interface IGameTimer extends Runnable {
 	void exit();
 	long getTime();
 	void resetTimer(Long timeroutId);
-	IGameEventDispatcher getDispatcher();
+	void changeTimeoutId(Long timeoutId);
 	void setTime(long time);
-	void setDispatcher(IGameEventDispatcher dispatcher);
+	void setNotifier(TimeoutNotifier notifier);
 	
 	
 

@@ -6,5 +6,7 @@ public enum PokerEventType {
     END_HAND,
     END_GAME,
     BET_COMMAND,
+    GET_COMMAND,
+    CHECK,
     EXIT
 }
