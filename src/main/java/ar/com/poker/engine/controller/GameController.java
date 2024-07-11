@@ -1,5 +1,8 @@
 package ar.com.poker.engine.controller;
-
+/*
+TODO remove
+* https://github.com/dperezcabrera/jpoker/tree/master
+* */
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

@@ -10,6 +10,7 @@ import ar.com.poker.dispatcher.GameEvent;
 import ar.com.poker.dispatcher.IGameEventDispatcher;
 import ar.com.poker.engine.model.ModelContext;
 import ar.com.poker.engine.states.EndHandState;
+import ar.com.poker.engine.states.InitHandTrigger;
 import ar.com.poker.engine.states.PokerStates;
 import ar.com.poker.engine.states.ShowDownTrigger;
 import ar.com.poker.engine.states.WinnerTrigger;
@@ -26,7 +27,6 @@ public class StateMachineConnector {
     private static final Logger LOGGER = LoggerFactory.getLogger(StateMachineConnector.class);
 
     private static final int END_HAND_SLEEP_TIME = 1000;
-    public static final String NEXT_PLAYER_TURN = "nextPlayerTurn";
     private final StateMachine<PokerStates, ModelContext> texasStateMachine = buildStateMachine();
     private final Map<String, IGameEventDispatcher<PokerEventType>> playersDispatcher;
     private final IGameTimer timer;
@@ -101,7 +101,7 @@ public class StateMachineConnector {
         }
     }
     private void notifyInitHand() {
-        notifyEvent(GameController.INIT_HAND_EVENT_TYPE);
+        notifyEvent(PokerEventType.INIT_HAND);
     }
     
     private void notifyBetCommand() {
@@ -129,17 +129,11 @@ public class StateMachineConnector {
                     new GameEvent<>(PokerEventType.GET_COMMAND,
                             GameController.SYSTEM_CONTROLLER, PlayerAdapter.toTableState(model, playerTurn)));
         }
-        timer.resetTimer(++timeoutId);
+        timer.changeTimeoutId(++timeoutId);
     }
 
     private void notifyEndHand() {
-        notifyEvent(GameController.END_HAND_PLAYER_EVENT_TYPE);
-        try{
-            Thread.sleep(END_HAND_SLEEP_TIME);
-        } catch (InterruptedException ex){
-            LOGGER.error("Error en la espera despues de terminar una mano.", ex);
-        }
-
+        notifyEvent(PokerEventType.END_HAND);
     }
 
     private void notifyEvent(PokerEventType type) {
@@ -152,7 +146,7 @@ public class StateMachineConnector {
     private void notifyEndGame() {
         LOGGER.debug("notifyEvent: {} -> {}", PokerEventType.END_GAME, model);
         scores = model.getScores();
-        playersDispatcher.entrySet().stream().forEach(entry
+        playersDispatcher.entrySet().forEach(entry
                 -> entry.getValue().dispatch(
                         new GameEvent<>(PokerEventType.END_GAME, SYSTEM_CONTROLLER, scores)));
         system.dispatch(new GameEvent<>(ConnectorGameEventType.EXIT, SYSTEM_CONTROLLER));

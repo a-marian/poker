@@ -63,6 +63,10 @@ public class Settings {
 	public long getBigBind() {
 		return smallBind * 2;
 	}
+
+	public long getBigBlind() {
+		return smallBind * 2;
+	}
 	
 	public void setSmallBind(long smallBind) {
 		this.smallBind = smallBind;
