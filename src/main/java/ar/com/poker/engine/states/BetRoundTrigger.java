@@ -42,4 +42,14 @@ public class BetRoundTrigger implements IStateTrigger<ModelContext> {
     public boolean execute(ModelContext context) {
         return false;
     }
+
+    //TODO remove
+    public void delete(StringBuilder sb, String s) {
+
+        int start = sb.indexOf(s);
+        if(start < 0)
+            return;
+
+        sb.delete(start, start + s.length());
+    }
 }

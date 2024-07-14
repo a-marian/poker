@@ -9,6 +9,9 @@ import ar.com.poker.api.game.TexasHoldEmUtil;
 import ar.com.poker.dispatcher.GameEvent;
 import ar.com.poker.dispatcher.IGameEventDispatcher;
 import ar.com.poker.engine.model.ModelContext;
+import ar.com.poker.engine.model.ModelUtil;
+import ar.com.poker.engine.states.BetRoundTrigger;
+import ar.com.poker.engine.states.CheckTrigger;
 import ar.com.poker.engine.states.EndHandState;
 import ar.com.poker.engine.states.InitHandTrigger;
 import ar.com.poker.engine.states.PokerStates;
@@ -166,7 +169,7 @@ public class StateMachineConnector {
                 .build();
         final IStateTrigger<ModelContext> checkTrigger = StateDecoratorBuilder.after(new CheckTrigger(), () -> notifyCheck());
         final IStateTrigger<ModelContext> showDownTrigger = new ShowDownTrigger();
-        final IStateTrigger<ModelContext> winnerTrigger = new WinnerTrigger();
+        final IStateTrigger<ModelContext> winnerTrigger = new WinnerTrsigger();
         final IStateTrigger<ModelContext> endHandTrigger = StateDecoratorBuilder.before(new EndHandTrigger(), () -> notifyEndHand());
         final IStateTrigger<ModelContext> endGameTrigger = StateDecoratorBuilder.after(new EndGameTrigger(), () -> notifyEndGame());
 
